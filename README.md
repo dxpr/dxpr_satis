@@ -49,7 +49,8 @@ $ ssh-keygen -t rsa -b 4096 -C "repository@dxpr.com" -f .ssh/repository_rsa
 - Verify that it works, for example:
 
 ```
-$ ssh -oStrictHostKeyChecking=accept-new -T -ai .ssh/repository_rsa git@github.com
+$ docker-compose run build bash -c "ssh -oStrictHostKeyChecking=accept-new -T -ai ~/.ssh/repository_rsa git@github.com"
+Warning: Permanently added 'github.com,140.82.113.4' (RSA) to the list of known hosts.
 Hi hoatle! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
