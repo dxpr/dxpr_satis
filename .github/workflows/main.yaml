@@ -16,13 +16,19 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: setup
+    - name: ssh key setup
       run: |
+        # ssh keys setup
         mkdir -p .ssh
         echo "$RSA_PRIVATE_KEY_BASE64" | base64 --decode > .ssh/repository_rsa
         chmod 400 .ssh/repository_rsa
         echo "$RSA_PUBLIC_KEY_BASE64" | base64 --decode > .ssh/repository_rsa.pub
         # verify
         ssh -oStrictHostKeyChecking=accept-new -T -ai .ssh/repository_rsa git@github.com || true
-
       if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != ''
+
+    - name: Build
+      run: |
+        docker-compose up --exit-code-from build build
+      if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != ''
+
