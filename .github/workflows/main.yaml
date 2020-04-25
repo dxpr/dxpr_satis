@@ -7,6 +7,7 @@ on:
 env:
   RSA_PRIVATE_KEY_BASE64: ${{ secrets.RSA_PRIVATE_KEY_BASE64 }}
   RSA_PUBLIC_KEY_BASE64: ${{ secrets.RSA_PUBLIC_KEY_BASE64 }}
+  GH_PAT: ${{ secrets.GH_PAT }}
 
 jobs:
 
@@ -16,19 +17,28 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: ssh key setup
+    - name: Set up
       run: |
         # ssh keys setup
         mkdir -p .ssh
         echo "$RSA_PRIVATE_KEY_BASE64" | base64 --decode > .ssh/repository_rsa
         chmod 400 .ssh/repository_rsa
         echo "$RSA_PUBLIC_KEY_BASE64" | base64 --decode > .ssh/repository_rsa.pub
-        # verify
+        # verify (FIXME(hoatle): true here as even authenticated, it exited with 1)
         ssh -oStrictHostKeyChecking=accept-new -T -ai .ssh/repository_rsa git@github.com || true
-      if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != ''
+        # GH_PAT setup
+        mkdir -p .composer
+        cat <<EOF >.composer/auth.json
+        {
+          "github-oauth": {
+              "github.com": "$GH_PAT"
+          }
+        }
+        EOF
+      if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != '' && env.GH_PAT != ''
 
     - name: Build
       run: |
-        docker-compose up --exit-code-from build build
-      if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != ''
+        docker-compose up --exit-code-from build --timeout 1000 build
+      if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != '' && env.GH_PAT != ''
 
