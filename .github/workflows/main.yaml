@@ -5,13 +5,18 @@ on:
 
 
 env:
+  # env vars to build
   RSA_PRIVATE_KEY_BASE64: ${{ secrets.RSA_PRIVATE_KEY_BASE64 }}
   RSA_PUBLIC_KEY_BASE64: ${{ secrets.RSA_PUBLIC_KEY_BASE64 }}
   GH_PAT: ${{ secrets.GH_PAT }}
+  # env vars to publish
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
 
 jobs:
 
-  build:
+  build-publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,4 +47,10 @@ jobs:
       run: |
         docker-compose up --exit-code-from build --timeout 1000 build
       if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != '' && env.GH_PAT != ''
+
+    - name: Publish
+      run: |
+        docker-compose up --exit-code-from publish --timeout 1000 publish
+        docker-compose run --entrypoint=/bin/sh publish -c "s3cmd setacl s3://$AWS_BUCKET --acl-public --recursive" # set acl if needed
+      if: env.AWS_ACCESS_KEY_ID != '' && env.AWS_SECRET_ACCESS_KEY != '' && env.AWS_BUCKET != ''
 

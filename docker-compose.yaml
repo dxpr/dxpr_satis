@@ -4,10 +4,25 @@ services:
 
   build:
     image: ${SATIS_IMAGE:-composer/satis:latest}
-    working_dir: /build
+    working_dir: /src
     command: build satis.json web/8 --no-interaction -vv
     tty: true
     volumes:
       - .composer:/composer
-      - .:/build
+      - .:/src
       - .ssh:/root/.ssh
+
+  publish:
+    image: dxpr/s3cmd
+    build:
+      context: ./hack/s3cmd
+    working_dir: /src
+    command: sync --access_key=${AWS_ACCESS_KEY_ID} --secret_key=${AWS_SECRET_ACCESS_KEY} -r --delete-removed web/8 s3://$AWS_BUCKET/
+    tty: true
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_BUCKET: ${AWS_BUCKET}
+    volumes:
+      - ./hack/s3cmd/.s3cfg:/root/.s3cfg
+      - .:/src

@@ -79,7 +79,7 @@ EOF
 - Build it with `docker-compose`:
 
 ```bash
-$ docker-compose up
+$ docker-compose up build
 # you see see the following similar output:
 Creating repository_build_1 ... done
 Attaching to repository_build_1
@@ -125,7 +125,7 @@ web/
 ```bash
 $ rm -rf .composer/cache
 $ rm -rf web
-$ docker-compose down -v
+$ docker-compose down build -v
 ```
 
 ## How to publish on DigitalOcean Spaces
@@ -141,11 +141,11 @@ $ docker-compose down -v
 ```bash
 $ export AWS_ACCESS_KEY_ID=<fill_yours>
 $ export AWS_SECRET_ACCESS_KEY=<fill_yours>
-$ export BUCKET=<fill_yours>
-$ rm -rf web # clean up
-$ docker-compose up # build
-$ s3cmd sync -r --delete-removed web/8 s3://$BUCKET/ # sync
-$ s3cmd setacl s3://$BUCKET --acl-public --recursive # set acl if needed
+$ export AWS_BUCKET=<fill_yours>
+$ rm -rf web # clean up if needed
+$ docker-compose up build # build if needed
+$ docker-compose up publish # sync
+$ docker-compose run --entrypoint=/bin/sh publish -c "s3cmd setacl s3://$AWS_BUCKET --acl-public --recursive" # set acl if needed
 ```
 
 
