@@ -23,5 +23,6 @@ jobs:
         chmod 400 .ssh/repository_rsa
         echo "$RSA_PUBLIC_KEY_BASE64" | base64 --decode > .ssh/repository_rsa.pub
         # verify
-        ssh -oStrictHostKeyChecking=accept-new -T -ai .ssh/repository_rsa git@github.com
+        ssh -oStrictHostKeyChecking=accept-new -T -ai .ssh/repository_rsa git@github.com || true
+
       if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != ''
