@@ -1,4 +1,4 @@
 web
 .composer
-.ssh/*
-!.ssh/known_hosts
+.ssh
+

@@ -49,15 +49,8 @@ $ ssh-keygen -t rsa -b 4096 -C "repository@dxpr.com" -f .ssh/repository_rsa
 - Verify that it works, for example:
 
 ```
-$ docker-compose run build sh
-Creating network "repository_default" with the default driver
-/build # ssh -T -ai ~/.ssh/repository_rsa git@github.com
-The authenticity of host 'github.com (140.82.112.4)' can't be established.
-RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added 'github.com,140.82.112.4' (RSA) to the list of known hosts.
+$ ssh -oStrictHostKeyChecking=accept-new -T -ai .ssh/repository_rsa git@github.com
 Hi hoatle! You've successfully authenticated, but GitHub does not provide shell access.
-/build # exit
 ```
 
 - Create the github personal access token (PAT):

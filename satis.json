@@ -1,10 +1,10 @@
 {
-    "name": "dxpr/repository",
+    "name": "dxpr-repository/drupal-8",
     "homepage": "https://hoatle-packages.nyc3.cdn.digitaloceanspaces.com/8",
     "repositories": [{
         "type": "package",
         "package": {
-            "name": "dxpr/builder",
+            "name": "dxpr/dxpr_builder",
             "version": "1.4.4",
             "type": "drupal-module",
             "source": {
@@ -16,7 +16,7 @@
     }, {
         "type": "package",
         "package": {
-            "name": "dxpr/builder",
+            "name": "dxpr/dxpr_builder",
             "version": "dev-master",
             "type": "drupal-module",
             "source": {
@@ -28,7 +28,7 @@
     },{
         "type": "package",
         "package": {
-            "name": "dxpr/builder",
+            "name": "dxpr/dxpr_builder",
             "version": "1.4.x-dev",
             "type": "drupal-module",
             "source": {
@@ -40,7 +40,7 @@
     },{
         "type": "package",
         "package": {
-            "name": "dxpr/theme",
+            "name": "dxpr/dxpr_theme",
             "version": "dev-master",
             "type": "drupal-theme",
             "source": {
