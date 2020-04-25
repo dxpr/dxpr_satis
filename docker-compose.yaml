@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  build:
+    image: ${SATIS_IMAGE:-composer/satis:latest}
+    working_dir: /build
+    command: build satis.json web/8 --no-interaction -vv
+    tty: true
+    volumes:
+      - .composer:/composer
+      - .:/build
+      - .ssh:/root/.ssh

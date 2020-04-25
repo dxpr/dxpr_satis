@@ -1,32 +1,59 @@
 {
     "name": "dxpr/repository",
-    "homepage": "https://packages.dxpr.com/8",
+    "homepage": "https://hoatle-packages.nyc3.cdn.digitaloceanspaces.com/8",
     "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/hoatle/glazed_builder"
-    },{
-        "type": "vcs",
-        "url": "https://github.com/hoatle/glazed"
-    },{
         "type": "package",
         "package": {
-            "name": "dxpr/glazed-builder",
+            "name": "dxpr/builder",
             "version": "1.4.4",
+            "type": "drupal-module",
             "source": {
               "type": "git",
               "url": "git@github.com:hoatle/glazed_builder.git",
-              "reference": "a5a7bc23e443b824fd891f5c313b44eacd57307c"
+              "reference": "9d17a81f5a8ba2fdf4e7691e8f69614a59b83794"
             }
         }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "dxpr/builder",
+            "version": "dev-master",
+            "type": "drupal-module",
+            "source": {
+              "type": "git",
+              "url": "git@github.com:hoatle/glazed_builder.git",
+              "reference": "8.x"
+          }
+        }
+    },{
+        "type": "package",
+        "package": {
+            "name": "dxpr/builder",
+            "version": "1.4.x-dev",
+            "type": "drupal-module",
+            "source": {
+              "type": "git",
+              "url": "git@github.com:hoatle/glazed_builder.git",
+              "reference": "8.x-1.4.x"
+          }
+        }
+    },{
+        "type": "package",
+        "package": {
+            "name": "dxpr/theme",
+            "version": "dev-master",
+            "type": "drupal-theme",
+            "source": {
+              "type": "git",
+              "url": "git@github.com:hoatle/glazed.git",
+              "reference": "8.x"
+          }
+        }
     }],
-    "require": {
-        "dxpr/glazed-builder": "8.x-dev || 8.x-1.4.x-dev || 1.*",
-        "dxpr/glazed-theme": "8.x-dev"
-    },
     "archive": {
         "directory": "dist",
         "format": "zip",
-        "prefix-url": "https://packages.dxpr.com/8",
+        "prefix-url": "https://hoatle-packages.nyc3.cdn.digitaloceanspaces.com/8",
         "skip-dev": true
     }
 }
