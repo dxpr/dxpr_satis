@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM alpine:3.10
 
 RUN apk update && \
   apk add python py-pip py-setuptools git ca-certificates && \

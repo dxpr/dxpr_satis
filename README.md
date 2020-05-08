@@ -128,9 +128,28 @@ $ rm -rf web
 $ docker-compose down build -v
 ```
 
-## How to publish on DigitalOcean Spaces
 
-- You can publish to DigitalOcean Spaces or AWS S3, they should work the same.
+## How to publish on AWS S3
+
+- You can publish to DigitalOcean Spaces or AWS S3, they should work the same. However, auth system
+  is only possible with AWS S3 + Cloud Front + Lambda@Edge
+
+- Create an AWS 3 bucket, get the right credentials to update the bucket:
+
+```bash
+$ export AWS_ACCESS_KEY_ID=<fill_yours>
+$ export AWS_SECRET_ACCESS_KEY=<fill_yours>
+$ export AWS_BUCKET=<fill_yours>
+$ rm -rf web # clean up if needed
+$ docker-compose run --rm build # build if needed
+$ docker-compose run --rm publish # sync
+```
+
+
+## How to publish on DigitalOcean Spaces (Deprecated)
+
+- You can publish to DigitalOcean Spaces or AWS S3, they should work the same. However, auth system
+  is only possible with AWS S3 + Cloud Front + Lambda@Edge
 
 - Follow:
   + https://www.digitalocean.com/docs/spaces/resources/s3cmd/
@@ -143,14 +162,7 @@ $ export AWS_ACCESS_KEY_ID=<fill_yours>
 $ export AWS_SECRET_ACCESS_KEY=<fill_yours>
 $ export AWS_BUCKET=<fill_yours>
 $ rm -rf web # clean up if needed
-$ docker-compose up build # build if needed
-$ docker-compose up publish # sync
+$ docker-compose run --rm build # build if needed
+$ docker-compose run --rm publish # sync
 $ docker-compose run --entrypoint=/bin/sh publish -c "s3cmd setacl s3://$AWS_BUCKET --acl-public --recursive" # set acl if needed
 ```
-
-
-
-## How to publish on AWS S3
-
-//TODO(hoatle): add this
-

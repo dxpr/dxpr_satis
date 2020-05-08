@@ -24,5 +24,4 @@ services:
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       AWS_BUCKET: ${AWS_BUCKET}
     volumes:
-      - ./hack/s3cmd/.s3cfg:/root/.s3cfg
       - .:/src

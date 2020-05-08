@@ -45,12 +45,10 @@ jobs:
 
     - name: Build
       run: |
-        docker-compose up --exit-code-from build --timeout 1000 build
+        docker-compose run --rm build
       if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != '' && env.GH_PAT != ''
 
     - name: Publish
       run: |
-        docker-compose up --exit-code-from publish --timeout 1000 publish
-        docker-compose run --entrypoint=/bin/sh publish -c "s3cmd setacl s3://$AWS_BUCKET --acl-public --recursive" # set acl if needed
+        docker-compose run --rm publish
       if: env.AWS_ACCESS_KEY_ID != '' && env.AWS_SECRET_ACCESS_KEY != '' && env.AWS_BUCKET != ''
-

@@ -1,6 +1,6 @@
 {
     "name": "dxpr-repository/drupal-8",
-    "homepage": "https://hoatle-packages.nyc3.cdn.digitaloceanspaces.com/8",
+    "homepage": "https://d20lvdml4v7ztx.cloudfront.net/8",
     "repositories": [{
         "type": "package",
         "package": {
@@ -53,7 +53,7 @@
     "archive": {
         "directory": "dist",
         "format": "zip",
-        "prefix-url": "https://hoatle-packages.nyc3.cdn.digitaloceanspaces.com/8",
+        "prefix-url": "https://d20lvdml4v7ztx.cloudfront.net/8",
         "skip-dev": true
     }
 }
