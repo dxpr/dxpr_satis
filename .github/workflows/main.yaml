@@ -2,7 +2,13 @@ name: CI/CD
 
 on:
   push:
-
+  # to trigger manually with webhook
+  # curl -X POST https://api.github.com/repos/:owner/:repo/dispatches \
+  # -H 'Accept: application/vnd.github.everest-preview+json' \
+  # -H 'Authorization: token TOKEN_VALUE_HERE' \
+  # --data '{"event_type":"exec-main","client_payload":{}}'
+  repository_dispatch:
+    types: [exec-main]
 
 env:
   # env vars to build
