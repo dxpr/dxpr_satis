@@ -40,6 +40,18 @@
   }, {
     "type": "package",
     "package": {
+      "name": "dxpr/theme",
+      "version": "1.0.0-beta1",
+      "type": "drupal-theme",
+      "source": {
+        "type": "git",
+        "url": "git@github.com:dxpr/dxpr_theme.git",
+        "reference": "b846dcfafc201d06e5535583359f0c9205fc1a54"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
       "name": "dxpr/dxpr_builder",
       "version": "dev-master",
       "type": "drupal-module",
