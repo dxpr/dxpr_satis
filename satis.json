@@ -40,7 +40,7 @@
   }, {
     "type": "package",
     "package": {
-      "name": "dxpr/theme",
+      "name": "dxpr/dxpr_theme",
       "version": "1.0.0-beta1",
       "type": "drupal-theme",
       "source": {
