@@ -1,4 +1,4 @@
-# dxpr/repository
+# dxpr/dxpr_satis
 
 `satis` is used to build composer repositories.
 
