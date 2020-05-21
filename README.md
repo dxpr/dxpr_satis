@@ -153,11 +153,14 @@ $ docker-compose run --rm build # build if needed
 $ docker-compose run --rm publish # sync
 ```
 
-## How to add JWT auth for /dist/
+## How to configure the CloudFront + Lambda@Edge
 
-- TODO(hoatle): add docs how to configure the CloudFront + Lambda@Edge.
+// TODO(hoatle): add docs
 
-- The recommend way on how users should authenticate with provided JWT token before `composer install`:
+
+## How to add JWT auth for authorized packages
+
+- The recommended way on how users should authenticate with provided JWT token before `composer install`:
 
 ```bash
 $ composer config --global bearer.<domain> <token>
@@ -166,7 +169,7 @@ $ composer config --global bearer.<domain> <token>
 For example:
 
 ```bash
-$ composer config --global bearer.d20lvdml4v7ztx.cloudfront.net eyJraWQiOiIxWlowN2FMVF9IOGVnc3JSU1VvMmVkc2dzbUtNVTJCRzBhSmZGZFNiWF9VIiwiYWxnIjoiUFMyNTYifQ.eyJpc3MiOiJodHRwczovL2R4cHIuY29tIiwic3ViIjoidXNlci1pZCIsImF1ZCI6Imh0dHBzOi8vcGFja2FnZXMuZHhwci5jb20iLCJzY29wZSI6Ijg6ZHhwci9keHByX2J1aWxkZXI6KiA5OmR4cHIvZHhwcl9idWlsZGVyOioiLCJpYXQiOjE1ODg2MTMwNzB9.YPrGULY4TUm8Ck6CXU1ydG4Lfo9nnJO0ZutPz1c7W5ZB_R99EY4oT3oOsLKf4wVwxJ8Bw03antUM89ORm1qoTd-JMS10uw1loHzIiOwNFhdwCtPiExXJsg84UxRwAhx71XoDG0iKiPdqGSVLxVaRjF-DJQ9aGnDkyPwybfCcQdRt6xy4qZqruJ0A5HSVhxKRPjGUlb3gK2bc_cEdWr0KcSjjh4LSmYrtmZ3UIgW3Af0mQSKfHSyQsLRqkWJRrW6lk5foJZc-wQ48NBhq8FSP9Eg87INwW-Tom8irWKQp86tz4VHjnfgWIyYMjv-epxQ7BVd7Jy1s8L3qbcwz3hUlDQ
+$ composer config --global bearer.packages.dxpr.com eyJraWQiOiIxWlowN2FMVF9IOGVnc3JSU1VvMmVkc2dzbUtNVTJCRzBhSmZGZFNiWF9VIiwiYWxnIjoiUFMyNTYifQ.eyJpc3MiOiJodHRwczovL2R4cHIuY29tIiwic3ViIjoidXNlci1pZCIsImF1ZCI6Imh0dHBzOi8vcGFja2FnZXMuZHhwci5jb20iLCJzY29wZSI6Ijg6ZHhwci9keHByX2J1aWxkZXI6KiA5OmR4cHIvZHhwcl9idWlsZGVyOioiLCJpYXQiOjE1ODg2MTMwNzB9.YPrGULY4TUm8Ck6CXU1ydG4Lfo9nnJO0ZutPz1c7W5ZB_R99EY4oT3oOsLKf4wVwxJ8Bw03antUM89ORm1qoTd-JMS10uw1loHzIiOwNFhdwCtPiExXJsg84UxRwAhx71XoDG0iKiPdqGSVLxVaRjF-DJQ9aGnDkyPwybfCcQdRt6xy4qZqruJ0A5HSVhxKRPjGUlb3gK2bc_cEdWr0KcSjjh4LSmYrtmZ3UIgW3Af0mQSKfHSyQsLRqkWJRrW6lk5foJZc-wQ48NBhq8FSP9Eg87INwW-Tom8irWKQp86tz4VHjnfgWIyYMjv-epxQ7BVd7Jy1s8L3qbcwz3hUlDQ
 ```
 
 - The 2nd possible way on how users could authenticate with provided JWT token when being prompted, they
@@ -174,14 +177,13 @@ $ composer config --global bearer.d20lvdml4v7ztx.cloudfront.net eyJraWQiOiIxWlow
 
 ```bash
 Gathering patches for dependencies. This might take a minute.
-  - Installing dxpr/dxpr_builder (1.4.4): Downloading (0%)    Authentication required (d20lvdml4v7ztx.cloudfront.net):
+  - Installing dxpr/dxpr_builder (1.4.4): Downloading (0%)    Authentication required (packages.dxpr.com):
       Username: eyJraWQiOiIxWlowN2FMVF9IOGVnc3JSU1VvMmVkc2dzbUtNVTJCRzBhSmZGZFNiWF9VIiwiYWxnIjoiUFMyNTYifQ.eyJpc3MiOiJodHRwczovL2R4cHIuY29tIiwic3ViIjoidXNlci1pZCIsImF1ZCI6Imh0dHBzOi8vcGFja2FnZXMuZHhwci5jb20iLCJzY29wZSI6Ijg6ZHhwci9keHByX2J1aWxkZXI6KiA5OmR4cHIvZHhwcl9idWlsZGVyOioiLCJpYXQiOjE1ODg2MTMwNzB9.YPrGULY4TUm8Ck6CXU1ydG4Lfo9nnJO0ZutPz1c7W5ZB_R99EY4oT3oOsLKf4wVwxJ8Bw03antUM89ORm1qoTd-JMS10uw1loHzIiOwNFhdwCtPiExXJsg84UxRwAhx71XoDG0iKiPdqGSVLxVaRjF-DJQ9aGnDkyPwybfCcQdRt6xy4qZqruJ0A5HSVhxKRPjGUlb3gK2bc_cEdWr0KcSjjh4LSmYrtmZ3UIgW3Af0mQSKfHSyQsLRqkWJRrW6lk5foJZc-wQ48NBhq8FSP9Eg87INwW-Tom8irWKQp86tz4VHjnfgWIyYMjv-epxQ7BVd7Jy1s8L3qbcwz3hUlDQ
       Password: 
-Downloading (100%)Do you want to store credentials for d20lvdml4v7ztx.cloudfront.net in /tmp/auth.json ? [Yn] y
+Downloading (100%)Do you want to store credentials for packages.dxpr.com in /tmp/auth.json ? [Yn] y
 ```
 
 The 2nd way is not recommended as the token is visible (see: https://github.com/composer/composer/issues/8888)
-
 
 
 ## How to publish on DigitalOcean Spaces (Deprecated)
