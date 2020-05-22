@@ -5,12 +5,12 @@
     "type": "package",
     "package": {
       "name": "dxpr/dxpr_builder",
-      "version": "1.0.0-alpha1",
+      "version": "1.0.0-beta2",
       "type": "drupal-module",
       "source": {
         "type": "git",
         "url": "git@github.com:dxpr/dxpr_builder.git",
-        "reference": "e51e027efb7c445243de1243ff14ee0921da814f"
+        "reference": "2518b3f157ed6f2039eff7b42e265a01318f45a4"
       }
     }
   }, {
@@ -23,6 +23,18 @@
         "type": "git",
         "url": "git@github.com:dxpr/dxpr_builder.git",
         "reference": "7b1d59791dd6a764dc6b4ac6db722594d6721de7"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
+      "name": "dxpr/dxpr_builder",
+      "version": "1.0.0-alpha1",
+      "type": "drupal-module",
+      "source": {
+        "type": "git",
+        "url": "git@github.com:dxpr/dxpr_builder.git",
+        "reference": "e51e027efb7c445243de1243ff14ee0921da814f"
       }
     }
   }, {
