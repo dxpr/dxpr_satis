@@ -5,6 +5,18 @@
     "type": "package",
     "package": {
       "name": "dxpr/dxpr_builder",
+      "version": "1.0.0-beta4",
+      "type": "drupal-module",
+      "source": {
+        "type": "git",
+        "url": "git@github.com:dxpr/dxpr_builder.git",
+        "reference": "4197ccc47400db11282b117dbac2433b1af793d2"
+      }
+    }
+  },{
+    "type": "package",
+    "package": {
+      "name": "dxpr/dxpr_builder",
       "version": "1.0.0-beta3",
       "type": "drupal-module",
       "source": {
