@@ -1,139 +1,15 @@
 {
   "name": "dxpr-repository/drupal-8",
   "homepage": "https://packages.dxpr.com/8",
-  "repositories": [{
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_builder",
-      "version": "1.0.0-beta4",
-      "type": "drupal-module",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_builder.git",
-        "reference": "4197ccc47400db11282b117dbac2433b1af793d2"
-      }
-    }
-  },{
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_builder",
-      "version": "1.0.0-beta3",
-      "type": "drupal-module",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_builder.git",
-        "reference": "8e393dd52ffac441d68fab915f956d7884b4fa5d"
-      }
-    }
-  },{
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_builder",
-      "version": "1.0.0-beta2",
-      "type": "drupal-module",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_builder.git",
-        "reference": "2518b3f157ed6f2039eff7b42e265a01318f45a4"
-      }
-    }
-  }, {
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_builder",
-      "version": "1.0.0-beta1",
-      "type": "drupal-module",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_builder.git",
-        "reference": "7b1d59791dd6a764dc6b4ac6db722594d6721de7"
-      }
-    }
-  }, {
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_builder",
-      "version": "1.0.0-alpha1",
-      "type": "drupal-module",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_builder.git",
-        "reference": "e51e027efb7c445243de1243ff14ee0921da814f"
-      }
-    }
-  }, {
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_builder_e",
-      "version": "1.0.0-beta1",
-      "type": "drupal-module",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_builder_e.git",
-        "reference": "bdb788cb9f7f4082997a8a2b5edb70dfc7cb69d4"
-      }
-    }
-  }, {
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_theme",
-      "version": "1.0.0-beta2",
-      "type": "drupal-theme",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_theme.git",
-        "reference": "4afeda56e9ca3099aab6fb21ca133cad9b0543b2"
-      }
-    }
-  }, {
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_theme",
-      "version": "1.0.0-beta1",
-      "type": "drupal-theme",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_theme.git",
-        "reference": "b846dcfafc201d06e5535583359f0c9205fc1a54"
-      }
-    }
-  }, {
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_builder",
-      "version": "dev-master",
-      "type": "drupal-module",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_builder.git",
-        "reference": "8.x"
-      }
-    }
-  }, {
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_builder_e",
-      "version": "dev-master",
-      "type": "drupal-module",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_builder_e.git",
-        "reference": "8.x"
-      }
-    }
-  }, {
-    "type": "package",
-    "package": {
-      "name": "dxpr/dxpr_theme",
-      "version": "dev-master",
-      "type": "drupal-theme",
-      "source": {
-        "type": "git",
-        "url": "git@github.com:dxpr/dxpr_theme.git",
-        "reference": "8.x"
-      }
-    }
-  }],
+  "repositories": [
+    { "type": "vcs", "url": "https://github.com/dxpr/dxpr_builder.git" },
+    { "type": "vcs", "url": "https://github.com/dxpr/dxpr_builder_e.git" }
+  ],
+  "require": {
+    "dxpr/dxpr_builder": "^1.0",
+    "dxpr/dxpr_builder_e": "^1.0"
+  },
+  "minimum-stability": "beta",
   "archive": {
     "directory": "dist",
     "format": "zip",

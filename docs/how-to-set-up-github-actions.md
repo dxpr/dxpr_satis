@@ -26,3 +26,7 @@ After this, try to run github actions to build.
   + Create the `AWS_BUCKET` secret key with the value that you created.
 
 After this, try to run github actions to publish.
+
+## Cloudfront cache invalidation
+
+- Create `DISTRIBUTION_ID` secret key to invalidate the cache

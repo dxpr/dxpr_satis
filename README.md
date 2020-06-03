@@ -114,19 +114,21 @@ repository_build_1 exited with code 0
 - You should see the familiar generated output below:
 
 ```bash
-$ tree web/
-web/
-└── 8
-    ├── dist
-    │   └── dxpr
-    │       └── builder
-    │           └── dxpr-builder-1.4.4-4540e5.zip
-    ├── include
-    │   └── all$d5676d6290c66ec7f0cb30f8ef69e58444936422.json
-    ├── index.html
-    └── packages.json
+$ tree web/8
+web/8
+├── dist
+│   └── dxpr
+│       ├── dxpr_builder
+│       │   ├── dxpr-dxpr_builder-4197ccc47400db11282b117dbac2433b1af793d2-zip-882ea5.zip
+│       │   └── dxpr-dxpr_builder-7eef2237e0c25bc609e7cf6d26292191df5ab808-zip-2df097.zip
+│       └── dxpr_builder_e
+│           └── dxpr-dxpr_builder_e-ccc0035a7ce3b54ce615a284c54eb7d2174948f5-zip-c879af.zip
+├── include
+│   └── all$e1f2bead53413ec936e3de091918cb0b0e410805.json
+├── index.html
+└── packages.json
 
-5 directories, 4 files
+5 directories, 6 files
 ```
 
 - To clean up:
