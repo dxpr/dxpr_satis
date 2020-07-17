@@ -6,8 +6,8 @@
     { "type": "vcs", "url": "https://github.com/dxpr/dxpr_builder_e.git" }
   ],
   "require": {
-    "dxpr/dxpr_builder": "^1.0",
-    "dxpr/dxpr_builder_e": "^1.0"
+    "dxpr/dxpr_builder": "*",
+    "dxpr/dxpr_builder_e": "*"
   },
   "minimum-stability": "beta",
   "archive": {
