@@ -75,3 +75,4 @@ jobs:
       if: env.DISTRIBUTION_ID != ''
       env:
         DRUPAL_ENDPOINT: 8
+        AWS_EC2_METADATA_DISABLED: true # see: https://github.com/aws/aws-cli/issues/5262#issuecomment-705832151
