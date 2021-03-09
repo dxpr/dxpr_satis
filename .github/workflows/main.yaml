@@ -69,10 +69,10 @@ jobs:
     - name: Invalidate CloudFront Cache
       run: |
         # not sure why docker-compose did not work here
-        docker-compose run --rm invalidate-cache
+        # docker-compose run --rm invalidate-cache
         # so use aws-cli from the github action runner instead
-        # aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /$DRUPAL_ENDPOINT/packages.json /$DRUPAL_ENDPOINT/index.html
+        aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /$DRUPAL_ENDPOINT/packages.json /$DRUPAL_ENDPOINT/index.html
       if: env.DISTRIBUTION_ID != ''
       env:
         DRUPAL_ENDPOINT: 8
-        AWS_EC2_METADATA_DISABLED: true # see: https://github.com/aws/aws-cli/issues/5262#issuecomment-705832151
+        # AWS_EC2_METADATA_DISABLED: true # see: https://github.com/aws/aws-cli/issues/5262#issuecomment-705832151
