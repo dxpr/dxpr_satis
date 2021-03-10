@@ -78,6 +78,7 @@ jobs:
         # AWS_EC2_METADATA_DISABLED: true # see: https://github.com/aws/aws-cli/issues/5262#issuecomment-705832151
 
   trigger-lightning_dxpr_project-exec-composer-install:
+    needs: [build-publish]
     runs-on: ubuntu-20.04
     timeout-minutes: 5
     steps:
