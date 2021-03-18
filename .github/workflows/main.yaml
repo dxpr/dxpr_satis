@@ -56,6 +56,11 @@ jobs:
         echo ".composer/auth.json is created"
       if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != '' && env.GH_PAT != ''
 
+    - name: s3-sync-back
+      run: |
+        docker-compose run --rm s3-sync-back
+      if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != '' && env.GH_PAT != ''
+
     - name: Build
       run: |
         docker-compose run --rm build

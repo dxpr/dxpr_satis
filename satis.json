@@ -15,6 +15,6 @@
     "format": "zip",
     "prefix-url": "https://packages.dxpr.com/8",
     "skip-dev": true,
-    "checksum": false
+    "rearchive": false
   }
 }

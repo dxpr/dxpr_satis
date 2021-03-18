@@ -2,6 +2,23 @@ version: '3'
 
 services:
 
+  # sync s3 back to this repo to avoid hash changes for dist files
+  # to fix this error: https://github.com/dxpr/dxpr_satis/issues/4
+  s3-sync-back:
+    image: dxpr/s3cmd
+    build:
+      context: ./hack/s3cmd
+    working_dir: /src
+    command: sync --access_key=$AWS_ACCESS_KEY_ID --secret_key=$AWS_SECRET_ACCESS_KEY -r --delete-removed s3://$AWS_BUCKET/ web/
+    tty: true
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_BUCKET
+    volumes:
+      - .:/src
+      - ./web:/src/web
+
   build:
     image: ${SATIS_IMAGE:-composer/satis:latest}
     working_dir: /src
