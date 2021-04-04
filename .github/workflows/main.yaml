@@ -76,7 +76,7 @@ jobs:
         # not sure why docker-compose did not work here
         # docker-compose run --rm invalidate-cache
         # so use aws-cli from the github action runner instead
-        aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /$DRUPAL_ENDPOINT/packages.json /$DRUPAL_ENDPOINT/index.html
+        aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /$DRUPAL_ENDPOINT/packages.json /$DRUPAL_ENDPOINT/index.html /$DRUPAL_ENDPOINT/p2/* /$DRUPAL_ENDPOINT/include/*
       if: env.DISTRIBUTION_ID != ''
       env:
         DRUPAL_ENDPOINT: 8
