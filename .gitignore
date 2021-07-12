@@ -2,4 +2,4 @@ web
 .composer
 .ssh
 .DS_Store
-
+vendor

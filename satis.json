@@ -9,7 +9,7 @@
     "dxpr/dxpr_builder": "*",
     "dxpr/dxpr_builder_e": "*"
   },
-  "minimum-stability": "beta",
+  "minimum-stability": "alpha",
   "archive": {
     "directory": "dist",
     "format": "zip",
