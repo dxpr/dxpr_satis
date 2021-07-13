@@ -20,7 +20,7 @@ services:
       - ./web:/src/web
 
   build:
-    image: ${SATIS_IMAGE:-composer/satis:latest}
+    image: ${SATIS_IMAGE:-hoatle/satis:4d42fc6}
     working_dir: /src
     command: build satis.json web/8 --no-interaction -vv
     tty: true
