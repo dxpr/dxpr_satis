@@ -69,7 +69,7 @@ jobs:
     - name: Publish
       run: |
         docker-compose run --rm publish
-      if: env.AWS_ACCESS_KEY_ID != '' && env.AWS_SECRET_ACCESS_KEY != '' && env.AWS_BUCKET != ''
+      if: env.AWS_ACCESS_KEY_ID != '' && env.AWS_SECRET_ACCESS_KEY != '' && env.AWS_BUCKET != '' && github.ref == 'refs/heads/8'
 
     - name: Invalidate CloudFront Cache
       run: |
@@ -77,7 +77,7 @@ jobs:
         # docker-compose run --rm invalidate-cache
         # so use aws-cli from the github action runner instead
         aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /$DRUPAL_ENDPOINT/packages.json /$DRUPAL_ENDPOINT/index.html /$DRUPAL_ENDPOINT/p2/* /$DRUPAL_ENDPOINT/include/*
-      if: env.DISTRIBUTION_ID != ''
+      if: env.DISTRIBUTION_ID != '' && github.ref == 'refs/heads/8'
       env:
         DRUPAL_ENDPOINT: 8
         # AWS_EC2_METADATA_DISABLED: true # see: https://github.com/aws/aws-cli/issues/5262#issuecomment-705832151
@@ -86,6 +86,7 @@ jobs:
     needs: [build-publish]
     runs-on: ubuntu-20.04
     timeout-minutes: 5
+    if: github.ref == 'refs/heads/8'
     steps:
     - name: Configure for the trigger
       id: trigger-config
