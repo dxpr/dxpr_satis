@@ -46,9 +46,10 @@ services:
   invalidate-cache:
     image: amazon/aws-cli
     tty: true
-    command: cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /$DRUPAL_ENDPOINT/packages.json /$DRUPAL_ENDPOINT/index.html
+    command: cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /$DRUPAL_ENDPOINT/packages.json /$DRUPAL_ENDPOINT/index.html /$DRUPAL_ENDPOINT/p2/* /$DRUPAL_ENDPOINT/include/*
     environment:
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
       - DISTRIBUTION_ID
       - DRUPAL_ENDPOINT
+      - AWS_EC2_METADATA_DISABLED=true
