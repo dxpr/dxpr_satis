@@ -28,12 +28,13 @@ jobs:
 
     steps:
 
+    # TODO: use native github-ci instead: https://docs.github.com/en/actions/using-jobs/using-concurrency
     - name: Cancel Previous Runs
-      uses: styfle/cancel-workflow-action@0.6.0
+      uses: styfle/cancel-workflow-action@0.12.1
       with:
         access_token: ${{ github.token }}
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Set up
       run: |
@@ -94,9 +95,10 @@ jobs:
         PAYLOAD="{\
         \"repository\": {\"GITHUB_REF\": \"$GITHUB_REF\", \"GITHUB_SHA\": \"$GITHUB_SHA\"}\
         }"
-        echo "::set-output name=payload::$PAYLOAD"
 
-    - uses: peter-evans/repository-dispatch@v1
+        echo "payload<<EOF"$'\n'"$PAYLOAD"$'\n'EOF >> $GITHUB_OUTPUT
+
+    - uses: peter-evans/repository-dispatch@v3
       with:
         token: ${{ secrets.GH_PAT }}
         event-type: exec-composer-install
