@@ -41,7 +41,7 @@ $ composer config --global bearer.packages.dxpr.com eyJraWQiOiIxWlowN2FMVF9IOGVn
 
 ## Set up the build
 
-- Make sure `docker` and `docker-compose` is available.
+- Make sure `docker` and `docker compose` is available.
 
 - Generate a ssh key, don't put any passphrase:
 
@@ -58,7 +58,7 @@ $ ssh-keygen -t rsa -b 4096 -C "repository@dxpr.com" -f .ssh/repository_rsa
 - Verify that it works, for example:
 
 ```
-$ docker-compose run build bash -c "ssh -oStrictHostKeyChecking=accept-new -T -ai ~/.ssh/repository_rsa git@github.com"
+$ docker compose run build bash -c "ssh -oStrictHostKeyChecking=accept-new -T -ai ~/.ssh/repository_rsa git@github.com"
 Warning: Permanently added 'github.com,140.82.113.4' (RSA) to the list of known hosts.
 Hi hoatle! You've successfully authenticated, but GitHub does not provide shell access.
 ```
@@ -85,10 +85,10 @@ EOF
 ## How to run the build
 
 
-- Build it with `docker-compose`:
+- Build it with `docker compose`:
 
 ```bash
-$ docker-compose run --rm build
+$ docker compose run --rm build
 # you see see the following similar output:
 Creating repository_build_1 ... done
 Attaching to repository_build_1
@@ -136,7 +136,7 @@ web/8
 ```bash
 $ rm -rf .composer/cache
 $ rm -rf web
-$ docker-compose down -v
+$ docker compose down -v
 ```
 
 ## How to publish on AWS S3
@@ -151,8 +151,8 @@ $ export AWS_ACCESS_KEY_ID=<fill_yours>
 $ export AWS_SECRET_ACCESS_KEY=<fill_yours>
 $ export AWS_BUCKET=<fill_yours>
 $ rm -rf web # clean up if needed
-$ docker-compose run --rm build # build if needed
-$ docker-compose run --rm publish # sync
+$ docker compose run --rm build # build if needed
+$ docker compose run --rm publish # sync
 ```
 
 ## How to configure the CloudFront + Lambda@Edge
@@ -204,7 +204,7 @@ $ export AWS_ACCESS_KEY_ID=<fill_yours>
 $ export AWS_SECRET_ACCESS_KEY=<fill_yours>
 $ export AWS_BUCKET=<fill_yours>
 $ rm -rf web # clean up if needed
-$ docker-compose run --rm build # build if needed
-$ docker-compose run --rm publish # sync
-$ docker-compose run --entrypoint=/bin/sh publish -c "s3cmd setacl s3://$AWS_BUCKET --acl-public --recursive" # set acl if needed
+$ docker compose run --rm build # build if needed
+$ docker compose run --rm publish # sync
+$ docker compose run --entrypoint=/bin/sh publish -c "s3cmd setacl s3://$AWS_BUCKET --acl-public --recursive" # set acl if needed
 ```

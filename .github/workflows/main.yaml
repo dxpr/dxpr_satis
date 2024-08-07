@@ -42,7 +42,7 @@ jobs:
         echo "$RSA_PRIVATE_KEY_BASE64" | base64 --decode > .ssh/repository_rsa
         chmod 400 .ssh/repository_rsa
         echo "$RSA_PUBLIC_KEY_BASE64" | base64 --decode > .ssh/repository_rsa.pub
-        docker-compose run build bash -c "ssh -oStrictHostKeyChecking=accept-new -T -ai ~/.ssh/repository_rsa git@github.com" || true
+        docker compose run build bash -c "ssh -oStrictHostKeyChecking=accept-new -T -ai ~/.ssh/repository_rsa git@github.com" || true
         # GH_PAT setup
         echo "rm -rf .composer" && rm -rf .composer
         echo "mkdir -p .composer" && mkdir -p .composer
@@ -58,23 +58,23 @@ jobs:
 
     - name: s3-sync-back
       run: |
-        docker-compose run --rm s3-sync-back
+        docker compose run --rm s3-sync-back
       if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != '' && env.GH_PAT != ''
 
     - name: Build
       run: |
-        docker-compose run --rm build
+        docker compose run --rm build
       if: env.RSA_PRIVATE_KEY_BASE64 != '' && env.RSA_PUBLIC_KEY_BASE64 != '' && env.GH_PAT != ''
 
     - name: Publish
       run: |
-        docker-compose run --rm publish
+        docker compose run --rm publish
       if: env.AWS_ACCESS_KEY_ID != '' && env.AWS_SECRET_ACCESS_KEY != '' && env.AWS_BUCKET != '' && github.ref == 'refs/heads/8'
 
     - name: Invalidate CloudFront Cache
       run: |
-        # docker-compose works now
-        docker-compose run --rm invalidate-cache
+        # docker compose works now
+        docker compose run --rm invalidate-cache
         # so we don't use aws-cli from the github action runner
         # aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /$DRUPAL_ENDPOINT/packages.json /$DRUPAL_ENDPOINT/index.html /$DRUPAL_ENDPOINT/p2/* /$DRUPAL_ENDPOINT/include/*
       if: env.DISTRIBUTION_ID != '' && github.ref == 'refs/heads/8'
